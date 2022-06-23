@@ -15,22 +15,36 @@ BONUS Stampate a video anche il cibo di mezza classifica, cioè che si trova nel
 //init array
 string[] favoriteFood = { "pizza", "gelato", "fragole", "filetto", "mele", "pesce" };
 
+string userFavoriteFood;
 
-Console.WriteLine("Scrivi il tuo cibo preferito:");
 
 //input user
 
-string userFavoriteFood = Console.ReadLine();
-//do
-//{
-//    Console.WriteLine("Cibo mancante. Riscrivi il tuo cibo preferito:");
+bool isUserFoodinArray = false;
+do
+{   
+    Console.WriteLine("Scrivi il tuo cibo preferito:");
+    userFavoriteFood = Console.ReadLine();
+    isUserFoodinArray = false;
 
-//} while (!Array.Exists(favoriteFood, element => element == userFavoriteFood));
+    for (int i = 0; i < favoriteFood.Length; i++)
+    {
+        if (userFavoriteFood == favoriteFood[i])
+        {
+            isUserFoodinArray = true;
+        }
+    }
+    if (!isUserFoodinArray)
+    {
+        Console.WriteLine("Cibo mancante. Riscrivi il tuo cibo preferito:");
+
+    }
+} while (!isUserFoodinArray);
 
 
 //random number
 Random rnd = new Random();
-int num = rnd.Next(0, favoriteFood.Length);
+int num = rnd.Next(0, (favoriteFood.Length - 1));
 
 string pcFood = favoriteFood[num];
 
@@ -66,13 +80,17 @@ Console.WriteLine(favoriteFood[0]);
 //Il vostro cibo preferito ma non troppo (ultima posizione della classifica)
 Console.WriteLine(favoriteFood[favoriteFood.Length - 1]);
 
+int median = favoriteFood.Length / 2;
 
-if ((favoriteFood.Length - 1) % 2 == 0)
+if ((favoriteFood.Length) % 2 == 0)
 {
-    Console.WriteLine(favoriteFood[favoriteFood.Length / 2]);
+    Console.WriteLine("Cibo in posizione mediana se lughezza array pari: " + favoriteFood[median]);
+    Console.WriteLine("Cibo in posizione mediana se lughezza array pari: " + favoriteFood[median - 1]);
 }
 else
 {
-    //Console.WriteLine(favoriteFood[Math.Floor(favoriteFood.Length / 2)]);
-    //Console.WriteLine(favoriteFood[Math.Floor(favoriteFood.Length / 2) + 1]);
+    decimal median2 = (decimal)favoriteFood.Length / 2;
+    int index = (int)Math.Floor(median2);
+    Console.WriteLine("Cibo in posizione mediana se lughezza array dispari: " + favoriteFood[index]);
+    
 }
